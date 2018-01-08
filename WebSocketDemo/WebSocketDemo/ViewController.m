@@ -20,11 +20,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     NSURL* url = [[NSURL alloc] initWithString:URLStr];
-    SocketManager* manager = [[SocketManager alloc] initWithSocketURL:url config:nil];
-    SocketIOClient* socket = manager.defaultSocket;
+    SocketIOClient* socket = [[SocketIOClient alloc] initWithSocketURL:url config:nil];
     self.socket = socket;
     [socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket connected");
+        [socket emit:@"chat" with:@[@"hello"]];
+        socket
     }];
     [socket connect];
 }
