@@ -25,7 +25,6 @@
     [socket on:@"connect" callback:^(NSArray* data, SocketAckEmitter* ack) {
         NSLog(@"socket connected");
         [socket emit:@"chat" with:@[@"hello"]];
-        socket
     }];
     [socket connect];
 }
